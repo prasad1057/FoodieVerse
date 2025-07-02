@@ -6,11 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/prasad1057/FoodieVerse.git'
-            }
-        }
+        
 
         stage('Build Docker Image') {
             steps {
