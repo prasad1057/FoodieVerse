@@ -15,11 +15,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="#">🍲 FoodieVerse</a>
+    <a class="navbar-brand" href="{{ url_for('home') }}">🍲 FoodieVerse</a>
+    <div class="d-flex">
+      <a href="{{ url_for('home') }}" class="btn btn-light me-2">Home</a>
+      <a href="{{ url_for('favorites') }}" class="btn btn-outline-primary me-2">❤️ Favorites</a>
+      <a href="{{ url_for('add_recipe') }}" class="btn btn-outline-danger">+ Add Recipe</a>
+    </div>
   </div>
 </nav>
+
+
+
 
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">

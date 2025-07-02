@@ -6,20 +6,34 @@ app.secret_key = 'supersecretkey'  # Required for session use
 
 # Load recipes from JSON file
 def load_recipes():
-    if os.path.exists('recipes.json'):
-        with open('recipes.json', 'r') as f:
-            return json.load(f)
-    return []
+    try:
+        with open("recipes.json", "r") as f:
+            data = f.read()
+            return json.loads(data) if data.strip() else []
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
 
 # Save recipes to JSON file
 def save_recipes(data):
     with open('recipes.json', 'w') as f:
         json.dump(data, f, indent=4)
 
-@app.route('/')
+@app.route("/")
 def home():
-    recipes = load_recipes()
-    return render_template('index.html', recipes=recipes)
+    try:
+        with open("recipes.json", "r") as f:
+            data = f.read()
+            if data.strip():  # if file is not empty
+                recipes = json.loads(data)
+            else:
+                recipes = []  # empty file, show blank page
+    except FileNotFoundError:
+        recipes = []  # file doesn't exist yet
+
+    return render_template("index.html", recipes=recipes)
+
 
 @app.route('/recipe/<int:id>')
 def recipe(id):
