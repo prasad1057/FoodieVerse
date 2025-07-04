@@ -16,4 +16,4 @@ spec:
       - name: foodie-container
         image: prasadk0143/foodieverse:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 8000
