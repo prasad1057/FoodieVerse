@@ -34,8 +34,8 @@ pipeline {
             steps {
                 sh '''
                 kind load docker-image $DOCKER_IMAGE
-                kubectl apply -f k8s/deployment.yaml
-                kubectl apply -f k8s/service.yaml
+                kubectl apply -f k8s/deployment.yml
+                kubectl apply -f k8s/service.yml
                 '''
             }
         }
