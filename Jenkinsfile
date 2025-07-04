@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/prasad1057/FoodieVerse.git'
+                git branch: 'main', url: 'https://github.com/prasad1057/FoodieVerse.git'
+
             }
         }
 
