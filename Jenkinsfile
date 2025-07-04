@@ -32,11 +32,13 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
-                kind load docker-image $DOCKER_IMAGE
-                kubectl apply -f k8s/deployment.yml
-                kubectl apply -f k8s/service.yml
-                '''
+            withEnv(["KUBECONFIG=/var/lib/jenkins/.kube/config"]) {
+                 sh '''
+                     kind load docker-image $DOCKER_IMAGE
+                     kubectl apply -f k8s/deployment.yml
+                     kubectl apply -f k8s/service.yml
+                    '''
+
             }
         }
     }
